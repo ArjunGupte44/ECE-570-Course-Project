@@ -24,9 +24,9 @@ def create_dataset(dataset, tokenizer, args):
 
     if dataset =='generation_iu_xray':
         train_dataset = generation_train(transform_train, args.image_dir, args.ann_path, tokenizer, dataset='iu_xray', args=args)
-        val_dataset = generation_eval(transform_test, args.image_dir, args.ann_path, tokenizer, split='val', dataset='iu_xray', args=args)
+        # val_dataset = generation_eval(transform_test, args.image_dir, args.ann_path, tokenizer, split='val', dataset='iu_xray', args=args)
         test_dataset = generation_eval(transform_test, args.image_dir, args.ann_path, tokenizer, split='test', dataset='iu_xray', args=args)
-        return train_dataset, val_dataset, test_dataset
+        return train_dataset, test_dataset
 
     elif dataset =='generation_mimic_cxr':
         train_dataset = generation_train(transform_train, args.image_dir, args.ann_path, tokenizer, dataset='mimic_cxr', args=args)
@@ -76,5 +76,6 @@ def create_loader(datasets, samplers, batch_size, num_workers, is_trains, collat
             drop_last=drop_last,
         )              
         loaders.append(loader)
+    print(f"Dataset len: {len(dataset)}")
     return loaders    
 

@@ -43,6 +43,7 @@ class generation_train(Dataset):
         
         self.annotation = json.load(open(os.path.join(ann_root),'r'))
         self.ann = self.annotation['train']
+        print(len(self.ann))
         self.transform = transform
         self.image_root = image_root
         self.tokenizer = tokenizer
@@ -80,7 +81,7 @@ class generation_eval(Dataset):
         if dataset == 'mimic_cxr':
             self.ann = self.annotation[split]
         else: # IU
-            self.ann = self.annotation
+            self.ann = self.annotation[split]
         self.transform = transform
         self.max_words = max_words
         self.image_root = image_root

@@ -16,5 +16,7 @@ class blip_resnet(nn.Module):
         batch_size, feat_size, _, _ = patch_feats.shape
         # NxLxD
         patch_feats = patch_feats.reshape(batch_size, feat_size, -1).permute(0, 2, 1)
+        # print(patch_feats.shape)
+        # print(avg_feats.shape)
         return patch_feats, avg_feats
 

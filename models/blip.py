@@ -5,6 +5,7 @@ warnings.filterwarnings("ignore")
 from models.med import BertConfig, BertModel, BertLMHeadModel
 from transformers import BertTokenizer
 from models.resnet import blip_resnet
+from models.vision_encoder import create_vision_encoder
 
 import torch
 from torch import nn
@@ -12,6 +13,7 @@ import torch.nn.functional as F
 
 from models.transformer import Transformer
 
+#Note, list below has default 14 diseases, but Vicuna was used to add 4 more diseases, making the total 18
 CONDITIONS = [
     'enlarged cardiomediastinum',
     'cardiomegaly',
@@ -47,9 +49,10 @@ class BLIP_Decoder(nn.Module):
         self.args = args
         
         vision_width = 2048
-        self.visual_encoder = blip_resnet(args)
-        
-        self.cls_head = nn.Linear(vision_width+512, 18*4)
+        # self.visual_encoder = blip_resnet(args)
+        self.visual_encoder = create_vision_encoder(args)
+
+        self.cls_head = nn.Linear(vision_width+512, 14*4) #18 for 18 cls heads (one for each disease) -> each head outputs probs for 4 options (BLA, POS, NEG, UNC)
         nn.init.normal_(self.cls_head.weight, std=0.001)
         if self.cls_head.bias is not None:
             nn.init.constant_(self.cls_head.bias, 0)
@@ -75,24 +78,28 @@ class BLIP_Decoder(nn.Module):
                                   num_queries=1)
         
     def forward(self, image, caption, cls_labels, clip_memory, criterion_cls, base_probs):
-        image_embeds, avg_embeds = self.visual_encoder(image) 
+        image_embeds, avg_embeds = self.visual_encoder(image) #avg_embeds is the average pooled features and is the dotted bxo with green rectangles in it in the paper
         image_atts = torch.ones(image_embeds.size()[:-1],dtype=torch.long).to(image.device)
 
+        ##The following block is Cross Modal Feature Enhancement##
         ##########################
         # NxKxC -> KxNxC
         clip_memory = torch.permute(clip_memory, (1, 0, 2))
-        query_embed = self.vision_proj(avg_embeds)
-        hs = self.memory(clip_memory, None, query_embed.unsqueeze(0), None)
+        query_embed = self.vision_proj(avg_embeds) #This generates the green "query" box in the diagram in the paper
+        hs = self.memory(clip_memory, None, query_embed.unsqueeze(0), None) #Retrieval and aggregation of top-k features from report database -> yellow box in paper
         # Nx512
         hs = hs.squeeze(0).squeeze(1)
-        avg_embeds = torch.cat((avg_embeds, hs), 1)
+        avg_embeds = torch.cat((avg_embeds, hs), 1) #This is the concat operation in the paper right after CMFE
         ##########################
 
+        #The next two lines perform disease classification and have each of the 18 heads have 4 outputs (each output is a prob for that result (BLA, POS, NEG, UNC) for that disease)
+        #This is the salmon colored DDP block in the paper
         cls_preds = self.cls_head(avg_embeds)
-        cls_preds = cls_preds.view(-1, 4, 18)
+        cls_preds = cls_preds.view(-1, 4, 14)
+
         # logit adjustment
         cls_preds[:, 1, :] += torch.log(torch.from_numpy(base_probs)).view(1, -1).to(image.device)
-        loss_cls = criterion_cls(cls_preds, cls_labels)
+        loss_cls = criterion_cls(cls_preds, cls_labels) #Compare predicted disease classifications with gt labels
         
         text = self.tokenizer(caption, padding='longest', truncation=True, return_tensors="pt").to(image.device)
         
@@ -124,7 +131,7 @@ class BLIP_Decoder(nn.Module):
 
         # classification branch
         cls_preds = self.cls_head(avg_embeds)
-        cls_preds = cls_preds.view(-1, 4, 18)
+        cls_preds = cls_preds.view(-1, 4, 14)
         cls_preds = F.softmax(cls_preds, dim=1)
         cls_preds_logits = cls_preds[:, 1, :14]
         cls_preds = torch.argmax(cls_preds, dim=1).cpu().numpy().tolist()

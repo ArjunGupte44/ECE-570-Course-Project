@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 
 # Python wrapper for METEOR implementation, by Xinlei Chen
 # Acknowledge Michael Denkowski for the generous discussion and help 
@@ -27,7 +27,7 @@ class Meteor:
                 stdout=subprocess.PIPE, \
                 stderr=subprocess.PIPE,
                 universal_newlines = True,
-                bufsize = 1)
+                ) #bufsize = 1)
         # Used to guarantee thread safety
         self.lock = threading.Lock()
 
@@ -44,6 +44,7 @@ class Meteor:
             eval_line += ' ||| {}'.format(stat)
 
         self.meteor_p.stdin.write('{}\n'.format(eval_line))
+        print(f"Final Line:\n{eval_line}")
         for i in range(0,len(imgIds)):
             scores.append(float(self.meteor_p.stdout.readline().strip()))
         score = float(self.meteor_p.stdout.readline().strip())
@@ -57,8 +58,13 @@ class Meteor:
     def _stat(self, hypothesis_str, reference_list):
         # SCORE ||| reference 1 words ||| reference n words ||| hypothesis words
         hypothesis_str = hypothesis_str.replace('|||','').replace('  ',' ')
-        score_line = ' ||| '.join(('SCORE', ' ||| '.join(reference_list), hypothesis_str))
+        score_line = ' ||| '.join(('SCORE', ' ||| '.join(reference_list), hypothesis_str)) #Format = SCORE ||| GT Report ||| Generated Report
+        print(f"\n{score_line}\n")
+        if self.meteor_p.poll() is None: #If true then process is still alive
+            print("Process active")
         self.meteor_p.stdin.write('{}\n'.format(score_line))
+        # self.meteor_p.stdin.flush()
+        print(f"Return value: {self.meteor_p.stdout.readline().strip()}") 
         return self.meteor_p.stdout.readline().strip()
 
     def _score(self, hypothesis_str, reference_list):

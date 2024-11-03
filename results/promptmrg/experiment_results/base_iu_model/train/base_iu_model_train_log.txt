@@ -1,0 +1,140 @@
+nohup: ignoring input
+Not using distributed mode
+Creating dataset...
+3335
+number of training samples: 3335
+number of testing samples: 833
+Dataset len: 833
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertLMHeadModel: ['bert.embeddings.token_type_embeddings.weight', 'cls.seq_relationship.bias', 'cls.seq_relationship.weight']
+- This IS expected if you are initializing BertLMHeadModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertLMHeadModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertLMHeadModel were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['bert.encoder.layer.5.crossattention.output.dense.bias', 'bert.encoder.layer.6.crossattention.self.value.weight', 'bert.encoder.layer.3.crossattention.output.dense.bias', 'bert.encoder.layer.8.crossattention.self.value.bias', 'bert.encoder.layer.5.crossattention.self.query.bias', 'bert.encoder.layer.6.crossattention.self.key.bias', 'bert.encoder.layer.4.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.0.crossattention.self.value.weight', 'bert.encoder.layer.2.crossattention.output.dense.bias', 'bert.encoder.layer.0.crossattention.self.value.bias', 'bert.encoder.layer.3.crossattention.self.value.bias', 'bert.encoder.layer.9.crossattention.self.value.weight', 'bert.encoder.layer.11.crossattention.output.dense.bias', 'bert.encoder.layer.6.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.9.crossattention.self.query.bias', 'bert.encoder.layer.3.crossattention.self.value.weight', 'bert.encoder.layer.7.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.10.crossattention.self.key.bias', 'bert.encoder.layer.1.crossattention.self.value.weight', 'bert.encoder.layer.7.crossattention.self.value.weight', 'bert.encoder.layer.11.crossattention.self.value.weight', 'bert.encoder.layer.0.crossattention.self.query.bias', 'bert.encoder.layer.1.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.0.crossattention.self.key.bias', 'bert.encoder.layer.8.crossattention.self.query.bias', 'bert.encoder.layer.11.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.4.crossattention.self.query.bias', 'bert.encoder.layer.10.crossattention.self.value.bias', 'bert.encoder.layer.8.crossattention.output.dense.weight', 'bert.encoder.layer.1.crossattention.self.query.bias', 'bert.encoder.layer.0.crossattention.self.query.weight', 'bert.encoder.layer.8.crossattention.self.key.bias', 'bert.encoder.layer.0.crossattention.self.key.weight', 'bert.encoder.layer.2.crossattention.self.key.weight', 'bert.encoder.layer.3.crossattention.output.dense.weight', 'bert.encoder.layer.7.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.0.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.8.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.4.crossattention.self.key.weight', 'bert.encoder.layer.5.crossattention.self.value.bias', 'bert.encoder.layer.3.crossattention.self.key.bias', 'bert.encoder.layer.1.crossattention.self.key.bias', 'bert.encoder.layer.10.crossattention.output.dense.weight', 'bert.encoder.layer.2.crossattention.self.query.bias', 'bert.encoder.layer.11.crossattention.output.dense.weight', 'bert.encoder.layer.9.crossattention.self.key.bias', 'bert.encoder.layer.9.crossattention.output.dense.weight', 'bert.encoder.layer.11.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.1.crossattention.output.dense.bias', 'bert.encoder.layer.0.crossattention.output.dense.bias', 'bert.encoder.layer.5.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.11.crossattention.self.query.weight', 'bert.encoder.layer.6.crossattention.self.value.bias', 'bert.encoder.layer.1.crossattention.self.key.weight', 'bert.encoder.layer.7.crossattention.output.dense.bias', 'bert.encoder.layer.1.crossattention.output.dense.weight', 'bert.encoder.layer.10.crossattention.output.LayerNorm.bias', 'cls.predictions.decoder.weight', 'bert.encoder.layer.9.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.7.crossattention.self.query.weight', 'bert.encoder.layer.11.crossattention.self.query.bias', 'bert.encoder.layer.9.crossattention.self.query.weight', 'bert.encoder.layer.4.crossattention.output.dense.bias', 'bert.encoder.layer.10.crossattention.output.dense.bias', 'bert.encoder.layer.7.crossattention.self.query.bias', 'bert.encoder.layer.7.crossattention.self.value.bias', 'bert.encoder.layer.2.crossattention.self.value.bias', 'bert.encoder.layer.11.crossattention.self.value.bias', 'bert.encoder.layer.5.crossattention.self.key.bias', 'bert.encoder.layer.9.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.8.crossattention.output.dense.bias', 'bert.encoder.layer.7.crossattention.self.key.bias', 'bert.encoder.layer.2.crossattention.output.dense.weight', 'bert.encoder.layer.5.crossattention.self.query.weight', 'bert.encoder.layer.10.crossattention.self.key.weight', 'bert.encoder.layer.5.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.10.crossattention.self.query.weight', 'bert.encoder.layer.4.crossattention.self.query.weight', 'bert.encoder.layer.6.crossattention.output.dense.weight', 'bert.encoder.layer.3.crossattention.self.query.bias', 'bert.encoder.layer.9.crossattention.output.dense.bias', 'bert.encoder.layer.3.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.5.crossattention.self.value.weight', 'bert.encoder.layer.9.crossattention.self.value.bias', 'bert.encoder.layer.7.crossattention.output.dense.weight', 'bert.encoder.layer.1.crossattention.self.query.weight', 'bert.encoder.layer.3.crossattention.self.key.weight', 'bert.encoder.layer.9.crossattention.self.key.weight', 'bert.encoder.layer.5.crossattention.self.key.weight', 'bert.encoder.layer.2.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.6.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.10.crossattention.self.value.weight', 'bert.encoder.layer.6.crossattention.self.query.bias', 'bert.encoder.layer.6.crossattention.output.dense.bias', 'bert.encoder.layer.2.crossattention.self.key.bias', 'bert.encoder.layer.7.crossattention.self.key.weight', 'bert.encoder.layer.11.crossattention.self.key.bias', 'bert.encoder.layer.0.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.8.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.3.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.8.crossattention.self.query.weight', 'bert.encoder.layer.2.crossattention.output.LayerNorm.bias', 'bert.encoder.layer.10.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.4.crossattention.self.key.bias', 'bert.encoder.layer.0.crossattention.output.dense.weight', 'bert.encoder.layer.2.crossattention.self.query.weight', 'bert.encoder.layer.6.crossattention.self.query.weight', 'bert.encoder.layer.4.crossattention.self.value.bias', 'bert.encoder.layer.11.crossattention.self.key.weight', 'bert.encoder.layer.8.crossattention.self.key.weight', 'bert.encoder.layer.1.crossattention.output.LayerNorm.weight', 'bert.encoder.layer.8.crossattention.self.value.weight', 'bert.encoder.layer.10.crossattention.self.query.bias', 'bert.encoder.layer.1.crossattention.self.value.bias', 'bert.encoder.layer.4.crossattention.self.value.weight', 'bert.encoder.layer.5.crossattention.output.dense.weight', 'bert.encoder.layer.6.crossattention.self.key.weight', 'bert.encoder.layer.2.crossattention.self.value.weight', 'bert.encoder.layer.4.crossattention.output.dense.weight', 'bert.encoder.layer.3.crossattention.self.query.weight', 'bert.encoder.layer.4.crossattention.output.LayerNorm.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+number of trainable parameters: 219882935
+0/208 loss: 16.95270347595215, loss_lm: 11.861529350280762, loss_cls: 5.0911736488342285
+10/208 loss: 16.427642822265625, loss_lm: 11.46265983581543, loss_cls: 4.964982032775879
+20/208 loss: 15.144594192504883, loss_lm: 9.991220474243164, loss_cls: 5.153374195098877
+30/208 loss: 14.173221588134766, loss_lm: 9.275073051452637, loss_cls: 4.898149013519287
+40/208 loss: 13.549641609191895, loss_lm: 8.707956314086914, loss_cls: 4.8416852951049805
+50/208 loss: 13.20461654663086, loss_lm: 8.439652442932129, loss_cls: 4.7649641036987305
+60/208 loss: 12.93442153930664, loss_lm: 8.27427864074707, loss_cls: 4.660142421722412
+70/208 loss: 12.734495162963867, loss_lm: 8.140857696533203, loss_cls: 4.593636989593506
+80/208 loss: 12.39789867401123, loss_lm: 7.937203407287598, loss_cls: 4.460695266723633
+90/208 loss: 11.845794677734375, loss_lm: 7.586643218994141, loss_cls: 4.259150981903076
+100/208 loss: 11.68321418762207, loss_lm: 7.60146427154541, loss_cls: 4.08174991607666
+110/208 loss: 11.484027862548828, loss_lm: 7.4890851974487305, loss_cls: 3.9949421882629395
+120/208 loss: 11.208199501037598, loss_lm: 7.434328556060791, loss_cls: 3.7738711833953857
+130/208 loss: 10.910676956176758, loss_lm: 7.307405471801758, loss_cls: 3.603271961212158
+140/208 loss: 10.769967079162598, loss_lm: 7.19723653793335, loss_cls: 3.572730779647827
+150/208 loss: 10.454374313354492, loss_lm: 6.984992027282715, loss_cls: 3.4693825244903564
+160/208 loss: 10.212705612182617, loss_lm: 7.031177997589111, loss_cls: 3.1815273761749268
+170/208 loss: 10.179439544677734, loss_lm: 7.034572124481201, loss_cls: 3.144866943359375
+180/208 loss: 9.809650421142578, loss_lm: 6.752644062042236, loss_cls: 3.057006597518921
+190/208 loss: 10.122498512268066, loss_lm: 6.915788650512695, loss_cls: 3.20671010017395
+200/208 loss: 9.956969261169434, loss_lm: 6.892160415649414, loss_cls: 3.0648090839385986
+0/208 loss: 9.84266185760498, loss_lm: 6.926799297332764, loss_cls: 2.915862560272217
+10/208 loss: 8.483129501342773, loss_lm: 6.1582465171813965, loss_cls: 2.324882745742798
+20/208 loss: 8.051851272583008, loss_lm: 5.701608657836914, loss_cls: 2.3502423763275146
+30/208 loss: 7.531286239624023, loss_lm: 5.209729194641113, loss_cls: 2.321556806564331
+40/208 loss: 7.317638397216797, loss_lm: 5.019820213317871, loss_cls: 2.297818422317505
+50/208 loss: 7.370485305786133, loss_lm: 4.709412574768066, loss_cls: 2.6610729694366455
+60/208 loss: 6.263671875, loss_lm: 4.238907337188721, loss_cls: 2.0247647762298584
+70/208 loss: 5.850091934204102, loss_lm: 3.838715076446533, loss_cls: 2.0113766193389893
+80/208 loss: 5.59101676940918, loss_lm: 3.756387948989868, loss_cls: 1.8346290588378906
+90/208 loss: 5.25180721282959, loss_lm: 3.432582139968872, loss_cls: 1.8192251920700073
+100/208 loss: 6.023131370544434, loss_lm: 3.8264708518981934, loss_cls: 2.1966605186462402
+110/208 loss: 5.46193790435791, loss_lm: 3.610988140106201, loss_cls: 1.8509495258331299
+120/208 loss: 5.41827392578125, loss_lm: 3.2973668575286865, loss_cls: 2.1209070682525635
+130/208 loss: 5.548442840576172, loss_lm: 3.3515217304229736, loss_cls: 2.1969213485717773
+140/208 loss: 5.624475479125977, loss_lm: 3.160226821899414, loss_cls: 2.4642486572265625
+150/208 loss: 5.802242755889893, loss_lm: 3.520321846008301, loss_cls: 2.281920909881592
+160/208 loss: 5.425293445587158, loss_lm: 3.4096555709838867, loss_cls: 2.0156378746032715
+170/208 loss: 5.913830757141113, loss_lm: 3.5799241065979004, loss_cls: 2.333906650543213
+180/208 loss: 5.7130937576293945, loss_lm: 3.3240678310394287, loss_cls: 2.389026165008545
+190/208 loss: 5.204939842224121, loss_lm: 2.9927549362182617, loss_cls: 2.2121846675872803
+200/208 loss: 5.652121067047119, loss_lm: 3.556943893432617, loss_cls: 2.095177173614502
+0/208 loss: 5.162364959716797, loss_lm: 2.742624044418335, loss_cls: 2.419741153717041
+10/208 loss: 4.9016947746276855, loss_lm: 2.90200138092041, loss_cls: 1.9996932744979858
+20/208 loss: 5.3811259269714355, loss_lm: 2.911623954772949, loss_cls: 2.4695019721984863
+30/208 loss: 5.317252159118652, loss_lm: 3.003282070159912, loss_cls: 2.3139703273773193
+40/208 loss: 5.233917236328125, loss_lm: 3.226510524749756, loss_cls: 2.00740647315979
+50/208 loss: 5.083371162414551, loss_lm: 3.048337936401367, loss_cls: 2.0350329875946045
+60/208 loss: 4.9559102058410645, loss_lm: 3.084131956100464, loss_cls: 1.8717783689498901
+70/208 loss: 5.763908386230469, loss_lm: 3.320028781890869, loss_cls: 2.4438798427581787
+80/208 loss: 4.839316368103027, loss_lm: 2.887204170227051, loss_cls: 1.9521123170852661
+90/208 loss: 4.619429588317871, loss_lm: 2.8840856552124023, loss_cls: 1.7353436946868896
+100/208 loss: 4.890692710876465, loss_lm: 2.9369640350341797, loss_cls: 1.9537287950515747
+110/208 loss: 4.754973888397217, loss_lm: 2.6787214279174805, loss_cls: 2.0762524604797363
+120/208 loss: 4.7653889656066895, loss_lm: 2.8819305896759033, loss_cls: 1.8834583759307861
+130/208 loss: 4.760894775390625, loss_lm: 2.8186511993408203, loss_cls: 1.9422434568405151
+140/208 loss: 5.150734901428223, loss_lm: 3.063502311706543, loss_cls: 2.0872323513031006
+150/208 loss: 4.78646183013916, loss_lm: 2.9574246406555176, loss_cls: 1.829037070274353
+160/208 loss: 4.826915740966797, loss_lm: 2.868483543395996, loss_cls: 1.9584323167800903
+170/208 loss: 4.859572410583496, loss_lm: 2.6935880184173584, loss_cls: 2.165984630584717
+180/208 loss: 5.42570686340332, loss_lm: 3.1827025413513184, loss_cls: 2.243004083633423
+190/208 loss: 4.972251892089844, loss_lm: 2.8133718967437744, loss_cls: 2.1588802337646484
+200/208 loss: 4.930896759033203, loss_lm: 2.9648866653442383, loss_cls: 1.9660100936889648
+0/208 loss: 4.549976348876953, loss_lm: 2.7595579624176025, loss_cls: 1.7904183864593506
+10/208 loss: 5.121769905090332, loss_lm: 2.705111026763916, loss_cls: 2.416659116744995
+20/208 loss: 4.729982852935791, loss_lm: 2.7608861923217773, loss_cls: 1.9690967798233032
+30/208 loss: 4.92041015625, loss_lm: 2.7911198139190674, loss_cls: 2.1292905807495117
+40/208 loss: 5.216382026672363, loss_lm: 2.8914687633514404, loss_cls: 2.3249130249023438
+50/208 loss: 4.946720123291016, loss_lm: 2.953880786895752, loss_cls: 1.9928395748138428
+60/208 loss: 4.593639373779297, loss_lm: 2.6754508018493652, loss_cls: 1.9181886911392212
+70/208 loss: 4.281587600708008, loss_lm: 2.5809853076934814, loss_cls: 1.7006025314331055
+80/208 loss: 4.8887834548950195, loss_lm: 2.7223665714263916, loss_cls: 2.166417121887207
+90/208 loss: 4.706109523773193, loss_lm: 2.7279844284057617, loss_cls: 1.978124976158142
+100/208 loss: 4.433878421783447, loss_lm: 2.6542372703552246, loss_cls: 1.7796412706375122
+110/208 loss: 4.707368850708008, loss_lm: 2.7045035362243652, loss_cls: 2.0028655529022217
+120/208 loss: 4.935218811035156, loss_lm: 2.743225574493408, loss_cls: 2.191992998123169
+130/208 loss: 4.523168563842773, loss_lm: 2.5444889068603516, loss_cls: 1.978679895401001
+140/208 loss: 4.710087776184082, loss_lm: 2.7612195014953613, loss_cls: 1.9488680362701416
+150/208 loss: 4.779796600341797, loss_lm: 2.6857681274414062, loss_cls: 2.0940282344818115
+160/208 loss: 4.755788326263428, loss_lm: 2.6297073364257812, loss_cls: 2.1260809898376465
+170/208 loss: 5.306940078735352, loss_lm: 2.8908495903015137, loss_cls: 2.416090726852417
+180/208 loss: 4.394045829772949, loss_lm: 2.641876220703125, loss_cls: 1.7521693706512451
+190/208 loss: 4.519813537597656, loss_lm: 2.5852229595184326, loss_cls: 1.9345906972885132
+200/208 loss: 4.440741539001465, loss_lm: 2.728480339050293, loss_cls: 1.7122610807418823
+0/208 loss: 4.4282636642456055, loss_lm: 2.6587653160095215, loss_cls: 1.7694984674453735
+10/208 loss: 4.807643413543701, loss_lm: 2.7481422424316406, loss_cls: 2.0595011711120605
+20/208 loss: 4.82539176940918, loss_lm: 2.7155661582946777, loss_cls: 2.109825849533081
+30/208 loss: 5.127171993255615, loss_lm: 2.8731231689453125, loss_cls: 2.2540488243103027
+40/208 loss: 4.964742660522461, loss_lm: 2.854907751083374, loss_cls: 2.109834671020508
+50/208 loss: 4.4621100425720215, loss_lm: 2.545067310333252, loss_cls: 1.9170427322387695
+60/208 loss: 4.990508079528809, loss_lm: 2.8417677879333496, loss_cls: 2.148740291595459
+70/208 loss: 4.562983989715576, loss_lm: 2.594022274017334, loss_cls: 1.9689617156982422
+80/208 loss: 5.123602390289307, loss_lm: 2.8709287643432617, loss_cls: 2.252673625946045
+90/208 loss: 5.294856071472168, loss_lm: 2.9539988040924072, loss_cls: 2.3408572673797607
+100/208 loss: 5.1209235191345215, loss_lm: 2.7168169021606445, loss_cls: 2.404106616973877
+110/208 loss: 4.384357452392578, loss_lm: 2.4395735263824463, loss_cls: 1.9447840452194214
+120/208 loss: 4.764667987823486, loss_lm: 2.66141939163208, loss_cls: 2.1032485961914062
+130/208 loss: 4.486297607421875, loss_lm: 2.467832088470459, loss_cls: 2.018465518951416
+140/208 loss: 4.303604602813721, loss_lm: 2.4534287452697754, loss_cls: 1.8501759767532349
+150/208 loss: 4.637659072875977, loss_lm: 2.601820945739746, loss_cls: 2.0358383655548096
+160/208 loss: 4.393627166748047, loss_lm: 2.4395899772644043, loss_cls: 1.9540374279022217
+170/208 loss: 4.321222305297852, loss_lm: 2.390502452850342, loss_cls: 1.9307196140289307
+180/208 loss: 4.558415412902832, loss_lm: 2.7114291191101074, loss_cls: 1.846986174583435
+190/208 loss: 4.234535217285156, loss_lm: 2.5317671298980713, loss_cls: 1.702768087387085
+200/208 loss: 4.594547271728516, loss_lm: 2.6768956184387207, loss_cls: 1.9176517724990845
+0/208 loss: 4.793333053588867, loss_lm: 2.7659902572631836, loss_cls: 2.0273427963256836
+10/208 loss: 5.163387298583984, loss_lm: 2.8643503189086914, loss_cls: 2.299036741256714
+20/208 loss: 4.858084201812744, loss_lm: 2.420875310897827, loss_cls: 2.437208890914917
+30/208 loss: 4.664907455444336, loss_lm: 2.6819992065429688, loss_cls: 1.9829083681106567
+40/208 loss: 4.782658576965332, loss_lm: 2.523282051086426, loss_cls: 2.2593765258789062
+50/208 loss: 5.142861843109131, loss_lm: 2.6886606216430664, loss_cls: 2.4542012214660645
+60/208 loss: 4.760442733764648, loss_lm: 2.6882994174957275, loss_cls: 2.072143077850342
+70/208 loss: 4.985418319702148, loss_lm: 2.7293264865875244, loss_cls: 2.256091833114624
+80/208 loss: 4.305746555328369, loss_lm: 2.3384757041931152, loss_cls: 1.967270851135254
+90/208 loss: 4.1959381103515625, loss_lm: 2.6420907974243164, loss_cls: 1.5538475513458252
+100/208 loss: 4.423506736755371, loss_lm: 2.4907355308532715, loss_cls: 1.9327714443206787
+110/208 loss: 4.092644691467285, loss_lm: 2.485422134399414, loss_cls: 1.6072226762771606
+120/208 loss: 4.693714141845703, loss_lm: 2.5611562728881836, loss_cls: 2.1325581073760986
+130/208 loss: 4.475984573364258, loss_lm: 2.7447657585144043, loss_cls: 1.7312190532684326
+140/208 loss: 4.350071907043457, loss_lm: 2.572988986968994, loss_cls: 1.777083158493042
+150/208 loss: 5.081315994262695, loss_lm: 2.729764461517334, loss_cls: 2.3515512943267822
+160/208 loss: 4.676993370056152, loss_lm: 2.67042875289917, loss_cls: 2.0065643787384033
+170/208 loss: 4.460858345031738, loss_lm: 2.475489854812622, loss_cls: 1.9853684902191162
+180/208 loss: 4.145896911621094, loss_lm: 2.4257259368896484, loss_cls: 1.7201709747314453
+190/208 loss: 4.39478063583374, loss_lm: 2.6536288261413574, loss_cls: 1.7411516904830933
+200/208 loss: 5.259433746337891, loss_lm: 2.916748523712158, loss_cls: 2.3426849842071533
+Saving current best to results/promptmrg\base_iu_model.pth
