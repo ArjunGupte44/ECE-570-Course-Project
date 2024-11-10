@@ -44,6 +44,7 @@ GITHUBREPONAME
       |--base_probs.json
       |--clip_text_features.json
       |--mimic_annotation_promptmrg.json
+      |--clip-imp-pretrained_128_6_after_4.pt
 
    |--iu_xray
       |--iu_annotation_promptmrg.json
