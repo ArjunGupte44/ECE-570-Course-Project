@@ -47,6 +47,7 @@ GITHUBREPONAME
 
    |--iu_xray
       |--iu_annotation_promptmrg.json
+      |--annotation.json
       |--images
          |--CXR1000_IM-0003
          |--CXR1001_IM-0004
