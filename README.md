@@ -10,7 +10,15 @@ This repository contains all the code utilized in this project. The code is divi
 
 The following sections of this README describe how to run the code for each Stage.
 
-## Installation
+## Stage 1: AI Medical Report Generation
+Below are the instructions for setup/installation and achieving the three goals comprising AI Medical Report Generation.
+
+### Setup and Installation
+Please note that these setup/installation instructions follow the exact same steps as those found in the original [PromptMRG](https://github.com/jhb86253817/PromptMRG) framework. If you encounter any issues, please refer to the PromptMRG repository for clarification.
+
+
+
+### Goal 1: Training a model to generate medical reports given Chest X-ray images using the [PromptMRG](https://github.com/jhb86253817/PromptMRG) framework.
 1. Clone this repository.
 ```Shell
 git clone https://github.com/jhb86253817/PromptMRG.git
