@@ -1,0 +1,13 @@
+CUDA_VISIBLE_DEVICES=0, python main_test.py \
+--n_gpu 1 \
+--image_dir data/vqa_rad/images/ \
+--ann_path data/vqa_rad/vqa_annotations_promptmrg.json \
+--dataset_name vqa_rad \
+--gen_max_len 110 \
+--gen_min_len 60 \
+--batch_size 16 \
+--save_dir results/promptmrg/experiment_results/base_iu_model_vqa_rad \
+--seed 456789 \
+--clip_k 21 \
+--beam_size 3 \
+--load_pretrained results/promptmrg/experiment_results/base_iu_model/base_iu_model.pth
