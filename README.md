@@ -1,6 +1,14 @@
-# PromptMRG
+# Towards a Unified Framework for AI Medical Report Generation and Medical Visual Question Answering with Protective Guardrails
 
-Code of AAAI 2024 paper: "PromptMRG: Diagnosis-Driven Prompts for Medical Report Generation".
+Code release for ECE 570 Term Project
+
+## Overview of this repository
+This repository contains all the code utilized in this project. The code is divided into 3 sections, corresponding to the 3 sections of the Methodology in the paper:
+Stage 1: AI Medical Report Generation
+Stage 2a: Small Language Model Guardrails
+Stage 2b: Medical Visual Question Answering with a Vision Language Model
+
+The following sections of this README describe how to run the code for each Stage.
 
 ## Installation
 1. Clone this repository.
