@@ -83,11 +83,23 @@ GITHUBREPONAME
 
 ### Goal 2: Use your trained model from Goal 1 or an existing pre-trained model to perform inferencing on the IU-Xray test dataset.
 * To use the model you trained in **Goal 1**, run `./test_iu_xray.sh` and modify the `--load-pre-trained` argument in the bash script to the path where you saved the model.
-* To use the model we trained for this ECE 570 project, run `./test_iu_xray.sh` without any modifications.
+* To use the model we trained for this ECE 570 project, run `./test_iu_xray.sh` without any modifications. A manual comparison with the results in the PromptMRG paper will demonstrate this newly trained model has similar inferencing performance.
 
 ### Goal 3: Use the model we trained for this ECE 570 project to perform inferencing on the VQA-RAD test dataset.
 * Run `./test_vqa_rad.sh` without any modifications. The reports and performance metrics will be printed to the terminal, and they are also stored in `results/promptmrg/experiment_results/base_iu_model/test/base_iu_model_vqa_rad_mrg_test_log.json`.
-* **NOTE:** The performance metrics are irrelevant when inferencing on the VQA-RAD dataset as the dataset does not come with ground truth labels. The purpose of this step is solely to generate medical reports for knowledge enhancement in Stage 2b. of our proposed framework. As the focus of this project is on Stages 2a and 2b, we do not worry about the quality of generated medical reports using PromptMRG, as we are using the framework out-of-the-box without any modifications. We assume the quality of the generated reports is a constant variable. Therefore, we do not conduct any evaluation on the inferencing metrics that are outputted in this goal and **Goal 2** above.
+* **NOTE:** The performance metrics are irrelevant when inferencing on the VQA-RAD dataset as the dataset does not come with ground truth labels. The purpose of this step is solely to generate medical reports for knowledge enhancement in Stage 2b. of our proposed framework. As this project focuses on Stages 2a and 2b, and not re-implementing PromptMRG, we are not as concerned about the quality of the generated reports when using the framework out-of-the-box without any modifications.
+
+
+## Stage 2a: SLM Guardrails
+* First, open the Colab noteook located in `colab_notebooks/Guardrails.ipynb` in Google Colab.
+* Go through each cell in the notebook and replace the global variables in CAPS at the top of the file with the appropriate file path. This will require uploading some of the files from this repository to your Google Drive for the Colab notebook to access them. Follow the comments in each cell to understand how to do this.
+* Finally, run through all the cells to see the performance of each guardrail method displayed in table and Confusion Matix formats.
+
+
+## Stage 2b: Medical Visual Question Answering using a VLM
+* First, open the Colab notebook located in `colab_notebooks/MVQA_VLM.ipynb` in Google Colab.
+* Go through each cell in the notebook and replace the global variables in CAPS at the top of the file with the appropriate file path. This will require uploading some of the files from this repository to your Google Drive for the Colab notebook to access them. Follow the comments in each cell to understand how to do this.
+* Finally, run through all the cells to see the impact of finetuning the VLM and knowledge transfer by sharing the medical report from **Stage 1**.
 
 ## Acknowledgment
 * [R2Gen](https://github.com/zhjohnchan/R2Gen)
