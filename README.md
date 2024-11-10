@@ -33,13 +33,20 @@ pip install -r requirements.txt
 The datasets and corresponding annotation files are quite large, so they are not located in this repository by default. Please follow the instructions listed below to retrieve them. To avoid unnecessary confusion and errors, these instructions are directly copied from the original [PromptMRG](https://github.com/jhb86253817/PromptMRG) repository with some slight modifications.
 
 * **MIMIC-CXR**: Do not worry about downloading the images for this dataset because they are not publicly available and require credentialed access. The annotation file can be downloaded from the [Google Drive](https://drive.google.com/file/d/1qR7EJkiBdHPrskfikz2adL-p9BjMRXup/view?usp=sharing). Additionally, you need to download `clip_text_features.json` from [here](https://drive.google.com/file/d/1Zyq-84VOzc-TOZBzlhMyXLwHjDNTaN9A/view?usp=sharing), the extracted text features of the training database via MIMIC pretrained [CLIP](https://stanfordmedicine.app.box.com/s/dbebk0jr5651dj8x1cu6b6kqyuuvz3ml). Put all these under folder `data/mimic_cxr/`.
-* **IU-Xray**: The images can be downloaded from [R2Gen](https://github.com/zhjohnchan/R2Gen). The annotations file `iu_annotation_promptmrg.json` has already been uploaded to this repository for your convenience and because it is NOT the same as the original annotations file found in the PromptMRG repository due to some necessary modifications. Make sure the images folder and annotations file are both under folder `data/iu_xray/`.
+* **IU-Xray**: This dataset contains [Chest X-ray Image, Medical Report] pairs. The images can be downloaded from [R2Gen](https://github.com/zhjohnchan/R2Gen). The annotations file `iu_annotation_promptmrg.json` has already been uploaded to this repository for your convenience and because it is NOT the same as the original annotations file found in the PromptMRG repository due to some necessary modifications. Make sure the images folder and annotations file are both under folder `data/iu_xray/`.
+* **VQA-RAD**: This dataset contains [Chest X-ray Image, Question, Answer] triplets. The images can be downloaded from [OSF](https://osf.io/89kps/files/osfstorage). Please ONLY download the `VQA_RAD Image Folder` as the rest of the files are already in this repository for your convenience. Also, make sure to rename the images folder to `images` and place it under `data/vqa_rad`.
 * You also need to download the `chexbert.pth` from [here](https://stanfordmedicine.app.box.com/s/c3stck6w6dol3h36grdc97xoydzxd7w9) for evaluating clinical efficacy and put it under `checkpoints/stanford/chexbert/`.
 
 After these steps, please ensure your folder directory has the following structure:
 ````
 GITHUBREPONAME
 |--data
+   |--user_questions
+      |--gpt_queries.json
+      |--potential_questions.txt
+      |--safe_questions.txt
+      |--violations_questions.txt
+
    |--mimic_cxr
       |--base_probs.json
       |--clip_text_features.json
@@ -52,6 +59,16 @@ GITHUBREPONAME
       |--images
          |--CXR1000_IM-0003
          |--CXR1001_IM-0004
+         ...
+   |--vqa_rad
+      |--Readme.docx
+      |--vqa_annotations_promptmrg.json
+      |--VQA_RAD Dataset Public.json
+      |--VQA_RAD Dataset Public.xlsx
+      |--VQA_RAD Dataset Public.xml
+      |--images
+         |--synpic676.jpg
+         |--synpic9872.jpg
          ...
 |--checkpoints
    |--stanford
