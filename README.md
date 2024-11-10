@@ -1,8 +1,24 @@
-# PromptMRG
+# Towards a Unified Framework for AI Medical Report Generation and Medical Visual Question Answering with Protective Guardrails
 
-Code of AAAI 2024 paper: "PromptMRG: Diagnosis-Driven Prompts for Medical Report Generation".
+Code release for ECE 570 Term Project
 
-## Installation
+## Overview of this repository
+This repository contains all the code utilized in this project. The code is divided into 3 sections, corresponding to the 3 sections of the Methodology in the paper:
+* Stage 1: AI Medical Report Generation
+* Stage 2a: Small Language Model Guardrails
+* Stage 2b: Medical Visual Question Answering with a Vision Language Model
+
+The following sections of this README describe how to run the code for each Stage.
+
+## Stage 1: AI Medical Report Generation
+Below are the instructions for setup/installation and achieving the three goals comprising AI Medical Report Generation.
+
+### Setup and Installation
+Please note that these setup/installation instructions follow the exact same steps as those found in the original [PromptMRG](https://github.com/jhb86253817/PromptMRG) framework. If you encounter any issues, please refer to the PromptMRG repository for clarification.
+
+
+
+### Goal 1: Training a model to generate medical reports given Chest X-ray images using the [PromptMRG](https://github.com/jhb86253817/PromptMRG) framework.
 1. Clone this repository.
 ```Shell
 git clone https://github.com/jhb86253817/PromptMRG.git
