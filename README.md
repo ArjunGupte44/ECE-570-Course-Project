@@ -91,16 +91,18 @@ GITHUBREPONAME
 
 
 ## Stage 2a: SLM Guardrails
-* First, open the Colab noteook located in `colab_notebooks/Guardrails.ipynb` in Google Colab.
+* First, open the Colab noteook located in `colab_notebooks/Stage2a_SLM_Guardrails/Stage2A_SLM_Guardrails.ipynb` in Google Colab.
 * Go through each cell in the notebook and replace the global variables in CAPS at the top of the file with the appropriate file path. This will require uploading some of the files from this repository to your Google Drive for the Colab notebook to access them. Follow the comments in each cell to understand how to do this.
 * Mount your Google Drive so Colab has access to these new files you uploaded.
+* Refer to the relevant requirements file for this step located in `colab_notebooks/Stage2a_SLM_Guardrails/requirements.txt`
 * Finally, run through all the cells to see the performance of each guardrail method displayed in table and Confusion Matix formats.
 
 
 ## Stage 2b: Medical Visual Question Answering using a VLM
-* First, open the Colab notebook located in `colab_notebooks/MVQA_VLM.ipynb` in Google Colab.
+* First, open the Colab notebook located in `colab_notebooks/Stage2b_MVQA_VLM/Stage2B_MVQA_VLM.ipynb` in Google Colab.
 * Go through each cell in the notebook and replace the global variables in CAPS at the top of the file with the appropriate file path. This will require uploading some of the files from this repository to your Google Drive for the Colab notebook to access them. Follow the comments in each cell to understand how to do this.
 * Mount your Google Drive so Colab has access to these new files you uploaded.
+* Refer to the relevant requirements file for this step located in `colab_notebooks/Stage2b_MVQA_VLM/requirements.txt`
 * Finally, run through all the cells to see the impact of finetuning the VLM and knowledge transfer by sharing the medical report from **Stage 1**.
 
 ## Acknowledgment
