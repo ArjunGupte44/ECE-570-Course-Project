@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ```
 
 ### Acquiring Datasets
-The datasets and corresponding annotation files are quite large, so they are not located in this repository by default. Please follow the instructions listed below to retrieve them. To avoid unnecessary confusion and errors, these instructions are directly copied from the original [PromptMRG](https://github.com/jhb86253817/PromptMRG) repository with some slight modifications.
+The datasets and corresponding annotation files are quite large, so they are not located in this repository by default. Please follow the instructions listed below to retrieve them. To avoid unnecessary confusion and errors, these instructions are adapted from the original [PromptMRG](https://github.com/jhb86253817/PromptMRG) repository with some slight modifications.
 
 * **MIMIC-CXR**: Do not worry about downloading the images for this dataset because they are not publicly available and require credentialed access. The annotation file can be downloaded from the [Google Drive](https://drive.google.com/file/d/1qR7EJkiBdHPrskfikz2adL-p9BjMRXup/view?usp=sharing). Additionally, you need to download `clip_text_features.json` from [here](https://drive.google.com/file/d/1Zyq-84VOzc-TOZBzlhMyXLwHjDNTaN9A/view?usp=sharing), the extracted text features of the training database via MIMIC pretrained [CLIP](https://stanfordmedicine.app.box.com/s/dbebk0jr5651dj8x1cu6b6kqyuuvz3ml). Put all these under folder `data/mimic_cxr/`.
 * **IU-Xray**: This dataset contains [Chest X-ray Image, Medical Report] pairs. The images can be downloaded from [R2Gen](https://github.com/zhjohnchan/R2Gen). The annotations file `iu_annotation_promptmrg.json` has already been uploaded to this repository for your convenience and because it is NOT the same as the original annotations file found in the PromptMRG repository due to some necessary modifications. Make sure the images folder and annotations file are both under folder `data/iu_xray/`.
@@ -78,14 +78,16 @@ GITHUBREPONAME
 ````
 
 
-### Goal 1: Training a model to generate medical reports given Chest X-ray images using the [PromptMRG](https://github.com/jhb86253817/PromptMRG) framework.
+### Goal 1: Training a model to generate medical reports given Chest X-ray images from the IU-Xray dataset using the PromptMRG framework.
+* To train the PromptMRG model on the IU-Xray dataset, run `./train_iu_xray.sh`. However, before doing so, make sure to change the `--save-dir` argument in the bash script to whatever directory you would like to save the model in.
 
+### Goal 2: Use your trained model from Goal 1 or an existing pre-trained model to perform inferencing on the IU-Xray test dataset.
+* To use the model you trained in **Goal 1**, run `./test_iu_xray.sh` and modify the `--load-pre-trained` argument in the bash script to the path where you saved the model.
+* To use the model we trained for this ECE 570 project, run `./test_iu_xray.sh` without any modifications.
 
-## Training
-* To train a model by yourself, run `bash train_mimic_cxr.sh` to train a model on MIMIC-CXR.
-* Alternatively, you can download a trained model weight from [here](https://drive.google.com/file/d/1s4AoLnnGOysOQkdILhhFCL59LyQtRHGa/view?usp=drive_link). Note that this model weight was trained with images from [R2Gen](https://github.com/zhjohnchan/R2Gen). If you use images processed by yourself, you may obtain degraded performance with this weight. In this case, you need to train a model by yourself.
-## Testing
-Run `bash test_mimic_cxr.sh` to test a trained model on MIMIC-CXR and `bash test_iu_xray.sh` for IU-Xray.
+### Goal 3: Use the model we trained for this ECE 570 project to perform inferencing on the VQA-RAD test dataset.
+* Run `./test_vqa_rad.sh` without any modifications. The reports and performance metrics will be printed to the terminal, and they are also stored in `results/promptmrg/experiment_results/base_iu_model/test/base_iu_model_vqa_rad_mrg_test_log.json`.
+* **NOTE:** The performance metrics are irrelevant when inferencing on the VQA-RAD dataset as the dataset does not come with ground truth labels. The purpose of this step is solely to generate medical reports for knowledge enhancement in Stage 2b. of our proposed framework. As the focus of this project is on Stages 2a and 2b, we do not worry about the quality of generated medical reports using PromptMRG, as we are using the framework out-of-the-box without any modifications. We assume the quality of the generated reports is a constant variable. Therefore, we do not conduct any evaluation on the inferencing metrics that are outputted in this Goal and **Goal 2** above.
 
 ## Acknowledgment
 * [R2Gen](https://github.com/zhjohnchan/R2Gen)
