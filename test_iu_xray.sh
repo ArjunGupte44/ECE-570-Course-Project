@@ -10,4 +10,4 @@ CUDA_VISIBLE_DEVICES=0, python main_test.py \
 --seed 456789 \
 --clip_k 21 \
 --beam_size 3 \
---load_pretrained results/promptmrg/experiment_results/custom_iu_model/custom_iu_model.pth
+--load_pretrained results/promptmrg/experiment_results/base_iu_model/base_iu_model.pth

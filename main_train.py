@@ -52,7 +52,7 @@ def parse_agrs():
 
     # Others
     parser.add_argument('--seed', type=int, default=9233, help='.')
-    parser.add_argument('--distributed', default=True, type=bool)
+    parser.add_argument('--distributed', default=False, type=bool)
     parser.add_argument('--dist_url', default='env://', help='url used to set up distributed     training')
     parser.add_argument('--device', default='cuda')
 
@@ -84,9 +84,9 @@ def main():
 
     #### Dataset #### 
     print("Creating dataset...")
-    train_dataset, val_dataset, test_dataset = create_dataset('generation_%s'%args.dataset_name, tokenizer, args)
+    train_dataset, test_dataset = create_dataset('generation_%s'%args.dataset_name, tokenizer, args)
     print('number of training samples: %d'%len(train_dataset))
-    print('number of validation samples: %d'%len(val_dataset))
+    # print('number of validation samples: %d'%len(val_dataset))
     print('number of testing samples: %d'%len(test_dataset))
 
     # distribution of diseases
@@ -95,20 +95,21 @@ def main():
     # normalize
     base_probs = np.array(base_probs) / np.max(base_probs)
     # add extra probs for 4 auxiliry diseases
-    base_probs = np.append(base_probs, [1,1,1,1])
+    # base_probs = np.append(base_probs, [1,1,1,1]) #Commented out by Arjun on 10/22
 
     if args.distributed:
         num_tasks = utils.get_world_size()
         global_rank = utils.get_rank()            
-        samplers = create_sampler([train_dataset,val_dataset,test_dataset], [True,False,False], num_tasks, global_rank)         
+        # samplers = create_sampler([train_dataset,val_dataset,test_dataset], [True,False,False], num_tasks, global_rank)    
+        samplers = create_sampler([train_dataset,test_dataset], [True,False], num_tasks, global_rank)         
         samplers = [samplers[0], None, None]
     else:
-        samplers = [None, None, None]
+        samplers = [None, None]
 
-    train_dataloader, val_dataloader, test_dataloader = create_loader([train_dataset, val_dataset, test_dataset], samplers, batch_size=[args.batch_size]*3, num_workers=[4,4,4], is_trains=[True, False, False], collate_fns=[None, None, None]) 
+    train_dataloader, test_dataloader = create_loader([train_dataset, test_dataset], samplers, batch_size=[args.batch_size]*2, num_workers=[0,4], is_trains=[True, False], collate_fns=[None, None]) 
 
     # build model architecture
-    labels_temp = ['[BLA]'] * 18 # for calculate length only
+    labels_temp = ['[BLA]'] * 14 # for calculate length only
     prompt_temp = ' '.join(labels_temp)+' '
     model = blip_decoder(args, tokenizer, image_size=args.image_size, prompt=prompt_temp)
     if args.load_pretrained:
@@ -127,7 +128,7 @@ def main():
         model_without_ddp = model.module    
 
     # build trainer and start to train
-    trainer = Trainer(model, criterion_cls, base_probs, metrics, args, train_dataloader, val_dataloader, test_dataloader, device, utils.is_main_process)
+    trainer = Trainer(model, criterion_cls, base_probs, metrics, args, train_dataloader, None, test_dataloader, device, utils.is_main_process)
     trainer.train()
 
 if __name__ == '__main__':

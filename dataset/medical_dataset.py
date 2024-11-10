@@ -108,4 +108,4 @@ class generation_eval(Dataset):
         clip_memory = self.clip_features[clip_indices]
         clip_memory = torch.from_numpy(clip_memory).float()
 
-        return image, caption, cls_labels, clip_memory
+        return image, image_path[0], caption, cls_labels, clip_memory

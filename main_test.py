@@ -22,7 +22,7 @@ def parse_agrs():
     parser.add_argument('--image_size', type=int, default=224, help='input image size')
 
     # Data loader settings
-    parser.add_argument('--dataset_name', type=str, default='iu_xray', choices=['iu_xray', 'mimic_cxr'], help='the dataset to be used.')
+    parser.add_argument('--dataset_name', type=str, default='iu_xray', choices=['iu_xray', 'mimic_cxr', "vqa_rad"], help='the dataset to be used.')
     parser.add_argument('--threshold', type=int, default=3, help='the cut off frequency for the words.')
     parser.add_argument('--num_workers', type=int, default=2, help='the number of workers for dataloader.')
     parser.add_argument('--batch_size', type=int, default=16, help='the number of samples for a batch')
@@ -68,6 +68,9 @@ def main():
 
     utils.init_distributed_mode(args) # from blip
     device = torch.device(args.device)
+    print(torch.cuda.get_device_name(0))
+    print(torch.cuda.device_count())
+    print(torch.cuda.current_device())
 
     # fix random seeds
     seed = args.seed + utils.get_rank() # from blip
@@ -81,7 +84,7 @@ def main():
     tokenizer.add_special_tokens({'bos_token': '[DEC]'})
     tokenizer.add_tokens(['[BLA]', '[POS]', '[NEG]', '[UNC]'])
 
-    #### Dataset #### 
+    #### Test dataset is in order of the annot JSON file #### 
     print("Creating dataset...")
     test_dataset = create_dataset_test('generation_%s'%args.dataset_name, tokenizer, args)
     print('number of testing samples: %d'%len(test_dataset))

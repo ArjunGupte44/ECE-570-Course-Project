@@ -77,30 +77,36 @@ class BaseTrainer(object):
                 self.train_dataloader.sampler.set_epoch(epoch)
 
             result = self._train_epoch_blip(epoch)
-            dist.barrier()
-            result = self.eval_blip(result)
-
+            # dist.barrier()
+            # result = self.eval_blip(result)
             # save logged information 
             log = {'epoch': epoch}
             log.update(result)
+        
+        #After training, just save and dont do val or test here
+        best_path = os.path.join(self.checkpoint_dir, 'custom_iu_model.pth')
+        torch.save(self.model.state_dict(), best_path)
+        print("Saving current best to {}".format(best_path))
 
-            # record best
-            if self.is_main_process:
-                if log[self.mnt_metric] >= self.mnt_best:
-                    self.mnt_best = log[self.mnt_metric]
-                    self.log_best = copy.deepcopy(log)
-                    best_path = os.path.join(self.checkpoint_dir, 'model_best.pth')
-                    torch.save(self.model.module.state_dict(), best_path)
-                    print("Saving current best to {}".format(best_path))
 
-            # print logged information 
-            for key, value in log.items():
-                print('\t{:15s}: {}'.format(str(key), value))
+        #     # record best
+        #     if self.is_main_process:
+        #         if log[self.mnt_metric] >= self.mnt_best:
+        #             self.mnt_best = log[self.mnt_metric]
+        #             self.log_best = copy.deepcopy(log)
+        #             best_path = os.path.join(self.checkpoint_dir, 'model_best.pth')
+        #             # torch.save(self.model.module.state_dict(), best_path)
+        #             torch.save(self.model.state_dict(), best_path)
+        #             print("Saving current best to {}".format(best_path))
 
-        if self.is_main_process:
-            print('Best results w.r.t {}:'.format(self.mnt_metric))
-            for key, value in self.log_best.items():
-                print('\t{:15s}: {}'.format(str(key), value))
+        #     # print logged information 
+        #     for key, value in log.items():
+        #         print('\t{:15s}: {}'.format(str(key), value))
+
+        # if self.is_main_process:
+        #     print('Best results w.r.t {}:'.format(self.mnt_metric))
+        #     for key, value in self.log_best.items():
+        #         print('\t{:15s}: {}'.format(str(key), value))
 
 class Trainer(BaseTrainer):
     def __init__(self, model, criterion_cls, base_probs, metric_ftns, args, train_dataloader, val_dataloader, test_dataloader, device, is_main_process):
@@ -122,6 +128,7 @@ class Trainer(BaseTrainer):
         train_loss = 0
         self.model.train()
         for batch_idx, (images, captions, cls_labels, clip_memory) in enumerate(self.train_dataloader):
+            # if batch_idx >= 200:
             images = images.to(self.device)
             cls_labels = cls_labels.to(self.device)
             clip_memory = clip_memory.to(self.device)
@@ -135,12 +142,15 @@ class Trainer(BaseTrainer):
             torch.nn.utils.clip_grad_value_(self.model.parameters(), 0.1)
             self.optimizer.step()
             self.optimizer.zero_grad()
+            torch.cuda.empty_cache()
+            # gc.collect()
         log = {'train_loss': train_loss / len(self.train_dataloader)}
 
         return log
 
     def eval_blip(self, log):
-        self.model.module.eval()
+        # self.model.module.eval() #Changed this to the line below
+        self.model.eval()
 
         logits = []
         counts = []
@@ -151,7 +161,9 @@ class Trainer(BaseTrainer):
                 cls_labels = cls_labels.to(self.device)
                 clip_memory = clip_memory.to(self.device)
                 ground_truths = captions
-                reports, cls_preds, cls_preds_logits = self.model.module.generate(images, clip_memory, sample=False, num_beams=self.args.beam_size, max_length=self.args.gen_max_len, min_length=self.args.gen_min_len)
+                # reports, cls_preds, cls_preds_logits = self.model.module.generate(images, clip_memory, sample=False, num_beams=self.args.beam_size, max_length=self.args.gen_max_len, min_length=self.args.gen_min_len)
+                reports, cls_preds, cls_preds_logits = self.model.generate(images, clip_memory, sample=False, num_beams=self.args.beam_size, max_length=self.args.gen_max_len, min_length=self.args.gen_min_len)
+                
                 ## logit adjustment
                 cls_labels = (cls_labels==1).float()
                 logit = cls_preds_logits*cls_labels
@@ -168,7 +180,7 @@ class Trainer(BaseTrainer):
             counts = np.sum(counts, 0)
             logits = logits / counts
             logits /= np.max(logits)
-            logits = np.append(logits, [1,1,1,1]) # 4 auxiliary diseases
+            # logits = np.append(logits, [1,1,1,1]) # 4 auxiliary diseases Commented this out 10/22
             #######
             self.base_probs = logits # update class distribution
             val_met = self.metric_ftns({i: [gt] for i, gt in enumerate(val_gts)},
@@ -184,7 +196,8 @@ class Trainer(BaseTrainer):
                 cls_labels = cls_labels.numpy().tolist()
                 clip_memory = clip_memory.to(self.device) 
                 ground_truths = captions
-                reports, _, _ = self.model.module.generate(images, clip_memory, sample=False, num_beams=self.args.beam_size, max_length=self.args.gen_max_len, min_length=self.args.gen_min_len)
+                # reports, _, _ = self.model.module.generate(images, clip_memory, sample=False, num_beams=self.args.beam_size, max_length=self.args.gen_max_len, min_length=self.args.gen_min_len)
+                reports, _, _ = self.model.generate(images, clip_memory, sample=False, num_beams=self.args.beam_size, max_length=self.args.gen_max_len, min_length=self.args.gen_min_len)
 
                 test_res.extend(reports)
                 test_gts.extend(ground_truths)

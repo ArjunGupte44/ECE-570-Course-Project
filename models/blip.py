@@ -49,8 +49,8 @@ class BLIP_Decoder(nn.Module):
         self.args = args
         
         vision_width = 2048
-        # self.visual_encoder = blip_resnet(args)
-        self.visual_encoder = create_vision_encoder(args)
+        self.visual_encoder = blip_resnet(args)
+        # self.visual_encoder = create_vision_encoder(args)
 
         self.cls_head = nn.Linear(vision_width+512, 14*4) #18 for 18 cls heads (one for each disease) -> each head outputs probs for 4 options (BLA, POS, NEG, UNC)
         nn.init.normal_(self.cls_head.weight, std=0.001)

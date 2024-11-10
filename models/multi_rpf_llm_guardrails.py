@@ -1,4 +1,4 @@
-#Multi Agent Reciprocal Probability Fusion Guardrails
+#Multi Agent Reciprocal Rank Fusion Guardrails
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
