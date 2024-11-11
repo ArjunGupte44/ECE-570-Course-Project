@@ -21,7 +21,7 @@ Please note that these setup/installation instructions follow the same steps as 
 conda create -n promptmrg python=3.10
 conda activate promptmrg
 ```
-3. Install the dependencies found in REPONAME/requirements.txt.
+3. Install the dependencies found in requirements.txt.
 ```Shell
 pip install -r requirements.txt
 ```
