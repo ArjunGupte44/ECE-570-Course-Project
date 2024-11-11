@@ -77,6 +77,7 @@ After these steps, please ensure your folder directory has the following structu
 ### Goal 1: Training a model to generate medical reports given Chest X-ray images from the IU-Xray dataset using the PromptMRG framework.
 * To train the PromptMRG model on the IU-Xray dataset, run `./train_iu_xray.sh`. However, before doing so, make sure to change the `--save-dir` argument in the bash script to whatever directory you would like to save the model in.
 * The training loss and other statistics will get written to `log_promptmrg.out`
+* Please note this process will take multiple hours (~6 hours on an NVIDIA 3050 Ti GPU). Although you are free to explore the training process, we highly recommend you to use our pre-trained model found [here](https://file.io/N3VwkkmcDRq3). After downloading the file, please store it under `results/promptmrg/experiment_results/base_iu_model/`.
 
 ### Goal 2: Observe Inferencing Statistics on the IU-Xray test dataset.
 * Please note that you cannot run inferencing on the IU-Xray test dataset. The original test scripts to accomplish this have been significantly modified to achieve this project's desired purpose of performing AIMRG on the VQA-RAD test dataset (explained in more detail in **Goal 3**). There is no value or purpose in performing inferencing on the IU-Xray test dataset as we are not changing the internal architecture of PromptMRG, thereby not needing further evaluation to be conducted on this vanilla dataset.
@@ -84,7 +85,7 @@ After these steps, please ensure your folder directory has the following structu
 * The inferencing performance data can be found in `results/promptmrg/experiment_results/base_iu_model/test/base_iu_model_test_log.txt`. A manual comparison with the results in the PromptMRG paper will demonstrate that our trained model has similar inferencing performance.
 
 ### Goal 3: Use the model we trained for this ECE 570 project to perform inferencing on the VQA-RAD test dataset.
-* Run `./test_vqa_rad.sh` without any modifications. This runs inferencing on the model we pre-trained in Stage 1. Please ensure you have the model file saved locally. It can be found [here](https://file.io/N3VwkkmcDRq3). After downloading the file, please store it under `results/promptmrg/experiment_results/base_iu_model/`.
+* Run `./test_vqa_rad.sh` without any modifications. This runs inferencing on the model we pre-trained in Stage 1.
 *  The reports and performance metrics will be printed to the terminal, and they are also stored in `results/promptmrg/experiment_results/base_iu_model/test/base_iu_model_vqa_rad_mrg_test_log.json`.
 * **NOTE:** The performance metrics are irrelevant when inferencing on the VQA-RAD dataset as the dataset does not come with ground truth labels. The purpose of this step is solely to generate medical reports for knowledge enhancement in Stage 2b. of our proposed framework. As this project focuses on Stages 2a and 2b, and not re-implementing PromptMRG, we are not as concerned about the quality of the generated reports when using the framework out-of-the-box without any modifications.
 
