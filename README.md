@@ -79,7 +79,7 @@ After these steps, please ensure your folder directory has the following structu
 * The training loss and other statistics will get written to `log_promptmrg.out`
 
 ### Goal 2: Observe Inferencing Statistics on the IU-Xray test dataset.
-* Please note that you cannot run inferencing on the IU-Xray test dataset. The original test scripts to accomplish this have been significantly modified to achieve this project's desired purpose of performing AIRMG on the VQA-RAD test dataset (explained in more detail in **Goal 3**). There is no value or purpose in performing inferencing on the IU-Xray test dataset as we are not changing the internal architecture of PromptMRG, thereby not needing further evaluation to be conducted on this vanilla dataset.
+* Please note that you cannot run inferencing on the IU-Xray test dataset. The original test scripts to accomplish this have been significantly modified to achieve this project's desired purpose of performing AIMRG on the VQA-RAD test dataset (explained in more detail in **Goal 3**). There is no value or purpose in performing inferencing on the IU-Xray test dataset as we are not changing the internal architecture of PromptMRG, thereby not needing further evaluation to be conducted on this vanilla dataset.
 * However, we still provide the inferencing accuracy results on IU-Xray before all the substantial changes were made to the test script as supplementary information.
 * The inferencing performance data can be found in `results/promptmrg/experiment_results/base_iu_model/test/base_iu_model_test_log.txt. A manual comparison with the results in the PromptMRG paper will demonstrate this our trained model has similar inferencing performance.
 
