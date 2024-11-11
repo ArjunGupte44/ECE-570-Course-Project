@@ -76,6 +76,7 @@ After these steps, please ensure your folder directory has the following structu
 
 ### Goal 1: Training a model to generate medical reports given Chest X-ray images from the IU-Xray dataset using the PromptMRG framework.
 * To train the PromptMRG model on the IU-Xray dataset, run `./train_iu_xray.sh`. However, before doing so, make sure to change the `--save-dir` argument in the bash script to whatever directory you would like to save the model in.
+* The training loss and other statistics will get written to `log_promptmrg.out`
 
 ### Goal 2: Use your trained model from Goal 1 or an existing pre-trained model to perform inferencing on the IU-Xray test dataset.
 * To use the model you trained in **Goal 1**, run `./test_iu_xray.sh` and modify the `--load-pre-trained` argument in the bash script to the path where you saved the model.
