@@ -83,7 +83,7 @@ GITHUBREPONAME
 
 ### Goal 2: Use your trained model from Goal 1 or an existing pre-trained model to perform inferencing on the IU-Xray test dataset.
 * To use the model you trained in **Goal 1**, run `./test_iu_xray.sh` and modify the `--load-pre-trained` argument in the bash script to the path where you saved the model.
-* To use the model we trained for this ECE 570 project, run `./test_iu_xray.sh` without any modifications. The bash script requires the weights file of the pre-trained model. It can be found [here](https://file.io/N3VwkkmcDRq3). After downloading the file, please store is under `results/promptmrg/experiment_results/base_iu_model/`
+* To use the model we trained for this ECE 570 project, run `./test_iu_xray.sh` without any modifications. The bash script requires the weights file of the pre-trained model. It can be found [here](https://file.io/N3VwkkmcDRq3). After downloading the file, please store it under `results/promptmrg/experiment_results/base_iu_model/`
 * A manual comparison with the results in the PromptMRG paper will demonstrate this newly trained model has similar inferencing performance.
 
 ### Goal 3: Use the model we trained for this ECE 570 project to perform inferencing on the VQA-RAD test dataset.
