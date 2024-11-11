@@ -16,15 +16,12 @@ Below are the instructions for setup/installation and achieving the three goals 
 ### Environment Setup and Dependency Installation
 Please note that these setup/installation instructions follow the same steps as those in the original [PromptMRG](https://github.com/jhb86253817/PromptMRG) framework. If you encounter any issues, please refer to the PromptMRG repository for clarification.
 1. Clone this repository.
-```Shell
-git clone https://github.com/REPONAME.git
-```
 2. Create a new conda environment.
 ```Shell
 conda create -n promptmrg python=3.10
 conda activate promptmrg
 ```
-3. Install the dependencies found in REPONAME/requirements.txt.
+3. Install the dependencies found in requirements.txt.
 ```Shell
 pip install -r requirements.txt
 ```
@@ -39,7 +36,6 @@ The datasets and corresponding annotation files are quite large, so they are not
 
 After these steps, please ensure your folder directory has the following structure:
 ````
-GITHUBREPONAME
 |--data
    |--user_questions
       |--gpt_queries.json
@@ -80,6 +76,7 @@ GITHUBREPONAME
 
 ### Goal 1: Training a model to generate medical reports given Chest X-ray images from the IU-Xray dataset using the PromptMRG framework.
 * To train the PromptMRG model on the IU-Xray dataset, run `./train_iu_xray.sh`. However, before doing so, make sure to change the `--save-dir` argument in the bash script to whatever directory you would like to save the model in.
+* The training loss and other statistics will get written to `log_promptmrg.out`
 
 ### Goal 2: Use your trained model from Goal 1 or an existing pre-trained model to perform inferencing on the IU-Xray test dataset.
 * To use the model you trained in **Goal 1**, run `./test_iu_xray.sh` and modify the `--load-pre-trained` argument in the bash script to the path where you saved the model.
@@ -106,7 +103,7 @@ GITHUBREPONAME
 * Refer to the relevant requirements file for this step located in `colab_notebooks/Stage2b_MVQA_VLM/requirements.txt`
 * Finally, run through all the cells to see the impact of finetuning the VLM and knowledge transfer by sharing the medical report from **Stage 1**.
 
-## Acknowledgment
+## Fwd: Acknowledgments from PromptMRG Repository
 * [R2Gen](https://github.com/zhjohnchan/R2Gen)
 * [BLIP](https://github.com/salesforce/BLIP)
 * [cvt2distilgpt2](https://github.com/aehrc/cvt2distilgpt2)
