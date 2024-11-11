@@ -95,7 +95,7 @@ def main():
     # normalize
     base_probs = np.array(base_probs) / np.max(base_probs)
     # add extra probs for 4 auxiliry diseases
-    # base_probs = np.append(base_probs, [1,1,1,1]) #Commented out by Arjun on 10/22
+    # base_probs = np.append(base_probs, [1,1,1,1])
 
     if args.distributed:
         num_tasks = utils.get_world_size()
