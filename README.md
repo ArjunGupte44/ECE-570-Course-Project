@@ -96,6 +96,7 @@ After these steps, please ensure your folder directory has the following structu
 * Mount your Google Drive so Colab has access to these new files you uploaded.
 * Refer to the relevant requirements file for this step located in `colab_notebooks/Stage2a_SLM_Guardrails/requirements.txt`
 * Finally, run through all the cells to see the performance of each guardrail method displayed in table and Confusion Matix formats.
+* **NOTE:** The synthetically generated dataset used to evaluate the different guardrail methods can be found split across the 3 text files in `data/user_questions/`. In our experiments, we use a subset of these text files.
 
 
 ## Stage 2b: Medical Visual Question Answering using a VLM
