@@ -78,13 +78,14 @@ After these steps, please ensure your folder directory has the following structu
 * To train the PromptMRG model on the IU-Xray dataset, run `./train_iu_xray.sh`. However, before doing so, make sure to change the `--save-dir` argument in the bash script to whatever directory you would like to save the model in.
 * The training loss and other statistics will get written to `log_promptmrg.out`
 
-### Goal 2: Use your trained model from Goal 1 or an existing pre-trained model to perform inferencing on the IU-Xray test dataset.
-* To use the model you trained in **Goal 1**, run `./test_iu_xray.sh` and modify the `--load-pre-trained` argument in the bash script to the path where you saved the model.
-* To use the model we trained for this ECE 570 project, run `./test_iu_xray.sh` without any modifications. The bash script requires the weights file of the pre-trained model. It can be found [here](https://file.io/N3VwkkmcDRq3). After downloading the file, please store it under `results/promptmrg/experiment_results/base_iu_model/`
-* A manual comparison with the results in the PromptMRG paper will demonstrate this newly trained model has similar inferencing performance.
+### Goal 2: Observe Inferencing Statistics on the IU-Xray test dataset.
+* Please note that you cannot run inferencing on the IU-Xray test dataset. The original test scripts to accomplish this have been significantly modified to achieve this project's desired purpose of performing AIRMG on the VQA-RAD test dataset (explained in more detail in **Goal 3**). There is no value or purpose in performing inferencing on the IU-Xray test dataset as we are not changing the internal architecture of PromptMRG, thereby not needing further evaluation to be conducted on this vanilla dataset.
+* However, we still provide the inferencing accuracy results on IU-Xray before all the substantial changes were made to the test script as supplementary information.
+* The inferencing performance data can be found in `results/promptmrg/experiment_results/base_iu_model/test/base_iu_model_test_log.txt. A manual comparison with the results in the PromptMRG paper will demonstrate this our trained model has similar inferencing performance.
 
 ### Goal 3: Use the model we trained for this ECE 570 project to perform inferencing on the VQA-RAD test dataset.
-* Run `./test_vqa_rad.sh` without any modifications. The reports and performance metrics will be printed to the terminal, and they are also stored in `results/promptmrg/experiment_results/base_iu_model/test/base_iu_model_vqa_rad_mrg_test_log.json`.
+* Run `./test_vqa_rad.sh` without any modifications. This runs inferencing on the model we pre-trained in Stage 1. Please ensure you have the model file saved locally. It can be found [here](https://file.io/N3VwkkmcDRq3). After downloading the file, please store it under `results/promptmrg/experiment_results/base_iu_model/`.
+*  The reports and performance metrics will be printed to the terminal, and they are also stored in `results/promptmrg/experiment_results/base_iu_model/test/base_iu_model_vqa_rad_mrg_test_log.json`.
 * **NOTE:** The performance metrics are irrelevant when inferencing on the VQA-RAD dataset as the dataset does not come with ground truth labels. The purpose of this step is solely to generate medical reports for knowledge enhancement in Stage 2b. of our proposed framework. As this project focuses on Stages 2a and 2b, and not re-implementing PromptMRG, we are not as concerned about the quality of the generated reports when using the framework out-of-the-box without any modifications.
 
 
