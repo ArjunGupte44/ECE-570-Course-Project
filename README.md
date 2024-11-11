@@ -16,9 +16,6 @@ Below are the instructions for setup/installation and achieving the three goals 
 ### Environment Setup and Dependency Installation
 Please note that these setup/installation instructions follow the same steps as those in the original [PromptMRG](https://github.com/jhb86253817/PromptMRG) framework. If you encounter any issues, please refer to the PromptMRG repository for clarification.
 1. Clone this repository.
-```Shell
-git clone https://github.com/REPONAME.git
-```
 2. Create a new conda environment.
 ```Shell
 conda create -n promptmrg python=3.10
@@ -39,7 +36,6 @@ The datasets and corresponding annotation files are quite large, so they are not
 
 After these steps, please ensure your folder directory has the following structure:
 ````
-GITHUBREPONAME
 |--data
    |--user_questions
       |--gpt_queries.json
@@ -106,7 +102,7 @@ GITHUBREPONAME
 * Refer to the relevant requirements file for this step located in `colab_notebooks/Stage2b_MVQA_VLM/requirements.txt`
 * Finally, run through all the cells to see the impact of finetuning the VLM and knowledge transfer by sharing the medical report from **Stage 1**.
 
-## Acknowledgment
+## Fwd: Acknowledgments from PromptMRG Repository
 * [R2Gen](https://github.com/zhjohnchan/R2Gen)
 * [BLIP](https://github.com/salesforce/BLIP)
 * [cvt2distilgpt2](https://github.com/aehrc/cvt2distilgpt2)
