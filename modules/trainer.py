@@ -84,7 +84,7 @@ class BaseTrainer(object):
             log.update(result)
         
         #After training, just save and dont do val or test here
-        best_path = os.path.join(self.checkpoint_dir, 'custom_iu_model.pth')
+        best_path = os.path.join(self.checkpoint_dir, 'base_iu_model.pth')
         torch.save(self.model.state_dict(), best_path)
         print("Saving current best to {}".format(best_path))
 
